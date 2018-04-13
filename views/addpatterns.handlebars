@@ -1,0 +1,156 @@
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h1>KnitHub</h1>
+                    <p class="text-right"> Hello {{user.firstname}}! <a href="/logout">Logout</a> </p>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" id="dashboard" href="/dashboard" aria-controls="dashboard" aria-selected="false">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="addpatterns" href="/addpatterns" aria-controls="addpattern" aria-selected="true">Add Pattern</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mypatterns" href="/mypatterns" aria-controls="mypatterns" aria-selected="false">My Patterns</a>
+                    </li>
+                </ul>
+                
+            </div>
+            </nav>
+        </div>
+ <div class="card-body">
+                        <form id="add-pattern">
+                            <div class="form-group">
+                                <label for="pattern-name">Pattern Name:</label>
+                                <input class="form-control" type="text" id="pattern-name" placeholder="Please enter a name for your pattern">
+                            </div>
+                            <div class="form-group">
+                                <label for="chart-url">Chart URL:</label>
+                                <input class="form-control" type="text" id="chart-url" placeholder="Url for image files only please (.jpg, .png, or .gif)">
+                            </div>
+                            <div class="form-group">
+                                <label for="pattern-type">Pattern Type:</label>
+                                <select class="form-control" id="pattern-type">
+                                    <option value="sweaters">Sweaters</option>
+                                    <option value="hats">Hats</option>
+                                    <option value="gloves_and_mittens">Gloves and Mittens</option>
+                                    <option value="scarves">Scarves</option>
+                                    <option value="stuffed_animals">Stuffed Animals</option>
+                                    <option value="socks">Socks</option>
+                                    <option value="other">Other (please explain in pattern instructions)</option>
+                                </select>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="colorwork">
+                                <label class="form-check-label" for="colorwork">Colorwork</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="cables">
+                                <label class="form-check-label" for="cables">Cables</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="lace">
+                                <label class="form-check-label" for="lace">Lace</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="written-instructions">Written Pattern Instructions:</label>
+                                <textarea class="form-control" id="written-instructions" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+            </div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    // Getting jQuery references to the pattern form contents
+    var patternForm = $("#add-pattern"),
+        patternName = $("#pattern-name"),
+        chartUrl = $("#chart-url"),
+        writtenInstructions = $("#written-instructions"),
+        patternType = $('#pattern-type').on('click',function() {
+  return($(this).val());
+});
+
+getColorVal = function(){
+         if ($("#colorwork").val() === "on") {
+        	return 1;
+        }
+        else {
+        	return 0;
+        }
+    };
+
+    getLaceVal = function(){
+
+        if ($("#lace").val() === "on") {
+        	return 1;
+        }
+        else {
+        	return 0;
+        }
+    };
+    getCablesVal = function(){
+
+        if ($("#cables").val() === "on") {
+        	return 1;
+        }
+        else {
+        	return 0;
+        }
+    };
+
+
+
+
+
+
+    // Adding an event listener for when the form is submitted
+    $(patternForm).on("submit", handleFormSubmit);
+
+    // A function for handling what happens when the form to create a new pattern is submitted
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        // Wont submit the post if we are missing a pattern name or type
+        if (!patternName.val().trim() || !patternType.val().trim()) {
+            return;
+        }
+        var newPattern = {
+        name: patternName
+            .val()
+            .trim(),
+        chart_url: chartUrl
+            .val()
+            .trim(),
+        garment_type: patternType
+        .val(),
+        cables: getCablesVal(),
+        lace: getLaceVal(),
+        colorwork: getColorVal(),
+        written_instructions: writtenInstructions
+            .val()
+            .trim(),
+        author: "{{user._id}}"
+    };
+
+    submitPattern(newPattern);
+    }
+    
+
+
+    // Submits a new post and brings user to blog page upon completion
+    function submitPattern(pattern) {
+        $.post("/addpatterns", pattern, function() {
+        window.location.href = "/mypatterns";
+    });
+    }
+
+});
+</script>

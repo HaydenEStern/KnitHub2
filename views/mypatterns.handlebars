@@ -1,0 +1,41 @@
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h1>KnitHub</h1>
+                    <p class="text-right"> Hello {{user.firstname}}! <a href="/logout">Logout</a> </p>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="dashboard" href="/dashboard" aria-controls="dashboard" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="addpatterns" href="/addpatterns" aria-controls="addpattern" aria-selected="false">Add Pattern</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mypatterns" href="/mypatterns" aria-controls="mypatterns" aria-selected="false">My Patterns</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+ <div class="card-body">
+                    		{{#each myPatterns}}
+                    		<div class="card">
+  <h5 class="card-header">{{this.pattern_name}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{this.garment_type}}</h5>
+    <p class="card-text">{{this.written_instructions}}</p>
+    <a href="{{this.chart_url}}" class="btn btn-primary" target="_blank">View chart</a>
+  </div>
+  
+
+            </div>
+            {{/each}}
+        </div>
+    </div>

@@ -1,0 +1,61 @@
+body {
+	background-color: #154E4E;
+}
+
+nav { 
+	background-color: #154E4E;
+	color: #9EBCBC;
+}
+
+h1 {
+	font-family: 'Margarine', cursive;
+	font-size: 72px;
+	color: #FFF2D7;
+}
+
+p {
+	font-family: 'Helvetica', sans-serif;
+
+}
+
+a {
+	font-weight: bold;
+	color: #154E4E;
+}
+
+a:hover {
+	color: #A64444;
+}
+
+nav a {
+	color: #9EBCBC;
+}
+
+
+.card {
+	border: 1px #154E4E solid;
+}
+
+.card-header {
+	background-color: #437979;
+	color: #FFFFFF;
+
+}
+
+.card-body {
+	padding: 10px;
+}
+
+.active {
+	color: #F2DAAB;
+}
+
+.btn-primary {
+	background-color: #A64444;
+	color: #FFFFFF;
+	border: 0px;
+}
+
+.btn-primary:hover {
+	background-color: #154E4E;
+}

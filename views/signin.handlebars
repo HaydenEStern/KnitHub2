@@ -1,0 +1,37 @@
+
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <h1>KnitHub</h1>
+                <p class="text-right"> Hello Guest! <a href="/signup">Sign Up</a> </p>
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="dashboard" href="/dashboard" aria-controls="dashboard" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="addpatterns" href="/addpatterns" aria-controls="addpattern" aria-selected="false">Add Pattern</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mypatterns" href="/mypatterns" aria-controls="mypatterns" aria-selected="false">My Patterns</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+        <div class="card-body">
+        	<h3>Sign In</h3>
+    <form id="signin" name="signin" method="post" action="signin">
+        <label for="username">Username</label>
+        <input class="text" name="username" type="text" />
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+        <input class="btn" type="submit" value="Sign In" />
+    </form>
+            </div>
+        </div>
